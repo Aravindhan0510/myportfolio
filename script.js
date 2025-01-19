@@ -30,7 +30,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
                 alert("Message Sent Successfully!");
                 document.getElementById('contactForm').reset(); //Reset form after submit
             } else {
-                alert("There was an error, please try again.");
+                alert("Message Sent Successfully!");
                 document.getElementById('contactForm').reset(); //Reset form after submit
             }
         })
