@@ -21,13 +21,14 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
     const googleFormUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
 
-    axios.post(googleFormUrl, formData, {
+    const corsProxyUrl = 'https://api.allorigins.win/get?url=';
+
+    axios.post(corsProxyUrl + encodeURIComponent(googleFormUrl), formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     })
         .then(response => {
-            console.log(response);
             if (response.status === 200) {
                 alert("Message Sent Successfully!");
                 document.getElementById('contactForm').reset(); //Reset form after submit
