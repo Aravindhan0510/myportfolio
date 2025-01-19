@@ -21,21 +21,28 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
     const googleFormUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
 
-    fetch(googleFormUrl, {
-        method: 'POST',
-        body: formData,
+    axios.post(googleFormUrl, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
     })
         .then(response => {
-            if (response.ok) {
+            console.log(response);
+            if (response.status === 200) {
                 alert("Message Sent Successfully!");
                 document.getElementById('contactForm').reset(); //Reset form after submit
             } else {
-                alert("Message Sent Successfully!");
+                alert("There was an error, please try again.");
                 document.getElementById('contactForm').reset(); //Reset form after submit
             }
         })
         .catch(error => {
-            console.error('Error submitting form:', error);
             alert("There was an error, please try again.");
+            document.getElementById('contactForm').reset(); //Reset form after submit
         });
 });
+
+function onsubmit(event){
+    alert("Message Sent Successfully!");
+    document.getElementById('contactForm').reset(); //Reset form after submit
+}
