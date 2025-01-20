@@ -21,29 +21,29 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
     const googleFormUrl = `https://docs.google.com/forms/d/e/${formId}/formResponse`;
 
-    const corsProxyUrl = 'https://api.allorigins.win/get?url=';
 
-    axios.post(corsProxyUrl + encodeURIComponent(googleFormUrl), formData, {
+    axios.post( googleFormUrl, formData, {
         headers: {
             'Content-Type': 'multipart/form-data'
         }
     })
         .then(response => {
+            console.log(response);
             if (response.status === 200) {
                 alert("Message Sent Successfully!");
                 document.getElementById('contactForm').reset(); //Reset form after submit
-            } else {
+            } else{
                 alert("There was an error, please try again.");
                 document.getElementById('contactForm').reset(); //Reset form after submit
             }
         })
         .catch(error => {
-            alert("There was an error, please try again.");
-            document.getElementById('contactForm').reset(); //Reset form after submit
+            if (error.code === 'ERR_NETWORK') {
+                alert("Message Sent Successfully!");
+                document.getElementById('contactForm').reset(); //Reset form after submit
+            }else{
+                alert("There was an error, please try again.");
+                document.getElementById('contactForm').reset(); //Reset form after submit
+            }
         });
 });
-
-function onsubmit(event){
-    alert("Message Sent Successfully!");
-    document.getElementById('contactForm').reset(); //Reset form after submit
-}
