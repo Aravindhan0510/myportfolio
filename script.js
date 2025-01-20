@@ -47,3 +47,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
             }
         });
 });
+
+document.getElementById('mobile-menu').addEventListener('click', function() {
+    document.querySelector('.nav-list').classList.toggle('active');
+});

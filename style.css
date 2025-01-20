@@ -308,6 +308,30 @@ footer .container {
     margin: 0 0.5rem;
 }
 
+/* Menu responsive design */
+.nav-list {
+    display: flex;
+    list-style: none;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .nav-list {
+        display: none;
+        flex-direction: column;
+    }
+    .nav-list.active {
+        display: flex;
+    }
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+}
+
 /* Responsive Design */
 
 @media screen and (max-width: 768px) {
